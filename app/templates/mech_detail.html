@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Name: {{ mech.name }}</h1>
+
+<strong>Series:</strong> {{ mech.series }}
+<strong>Type:</strong> {{ mech.category }}
+
+<h2>Attacks</h2>
+<div class="attacks">
+    {% for attacks in mech.attacks %}
+        <div class="attack-details">
+            <a href="/attack/{{ mech.id }}/{{ attacks.id }}">
+            <p><strong>{{ attacks.name }}</strong></p></a>
+            <p><strong>Potency: {{ attacks.attack_potency }}</strong></p>
+        </div>
+        <form method="POST" action="{{ url_for('main.delete_attack', mech_id = mech.id, attack_id=attacks.id) }}">
+            {{ form.csrf_token }}
+            <input type="submit" value="DELETE">
+        </form>    
+    {% endfor %}
+</div>
+
+<form method="POST" action="{{ url_for('main.new_attack', mech_id=mech.id) }}">
+    {{ form.csrf_token }}
+    <input type="submit" value="New Attack">
+</form>
+
+<h2>Update/Edit</h2>
+<form method="POST" action="{{ url_for('main.mech_detail', mech_id=mech.id) }}">
+    {{ form.csrf_token }}
+    <fieldset>
+        <legend>Please enter your information:</legend>
+            {{ form.name.label }}
+            {{ form.name }}
+            {{ form.series.label }}
+            {{ form.series }}
+            {{ form.category.label }}
+            {{ form.category }}
+            {{ form.submit }}
+    </fieldset>
+</form>
+
+{% endblock %}

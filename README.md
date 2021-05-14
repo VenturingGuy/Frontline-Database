@@ -1,3 +1,4 @@
-# My Project
+# Frontline Database
 
-Add project description here.
+This app allows you to create robot units and add attacks with descriptions, as well as other info, to them.
+

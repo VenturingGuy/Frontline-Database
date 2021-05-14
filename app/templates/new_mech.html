@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>New Mech</h1>
+<form method="POST" action="{{ url_for('main.new_mech') }}">
+    {{ form.csrf_token }}
+    <fieldset>
+        <legend>Please enter your information:</legend>
+            {{ form.name.label }}
+            {{ form.name }}
+            {{ form.series.label }}
+            {{ form.series }}
+            {{ form.category.label }}
+            {{ form.category }}
+            {{ form.submit }}
+    </fieldset>
+</form>
+{% endblock %}

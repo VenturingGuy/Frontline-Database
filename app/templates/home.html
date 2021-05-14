@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Frontline Database</h1>
+
+<p><em>Home to your favorite (and not so favorite) robots!</em></p>
+
+<h2>All Robots</h2>
+
+{% for mech in all_mechs %}
+<div class="mech">
+    <a href="/mech/{{ mech.id }}">{{ mech.name }}</a> 
+    <p><strong>Series:</strong> {{ mech.series }}</p>
+    <p><strong>Type:</strong> {{ mech.category }}</p>
+</div>
+{% endfor %}
+
+
+{% endblock %}

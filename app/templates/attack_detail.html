@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Name: {{ attack.name }}</h1>
+
+
+<div class="attack-details">
+    <p><strong>Potency: {{ attack.attack_potency }}</strong></p>
+</div>
+
+<h2>Update/Edit</h2>
+<form method="POST" action="{{ url_for('main.attack_detail', mech_id = mech.id, attack_id=attack.id) }}">
+    {{ form.csrf_token }}
+    <fieldset>
+        <legend>Please enter your information:</legend>
+            {{ form.name.label }}
+            {{ form.name }}
+            {{ form.attack_potency.label }}
+            {{ form.attack_potency }}
+            {{ form.mech.label }}
+            {{ form.mech }}
+            {{ form.submit }}
+    </fieldset>
+</form>
+
+<h2>Delete</h2>
+<form method="POST" action="{{ url_for('main.delete_attack', mech_id = mech.id, attack_id=attack.id) }}">
+    {{ form.csrf_token }}
+    <input type="submit" value="DELETE">
+</form>
+
+{% endblock %}
